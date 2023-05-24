@@ -61,6 +61,7 @@ int _putchar(char c);
 void _puts(char *str);
 char *_strcpy(char *destn, char *src);
 int _isalpha(int c);
+int execute_command(char **args)
 int intlen(int num);
 int _atoi(char *s);
 char *_itoa(unsigned int n);
@@ -104,6 +105,7 @@ void error_file(char **argv, int c);
 
 /*Handling Environments*/
 void free_env(char **env);
+void free_args(char **args)
 extern char **environ;
 void create_envi(char **envi);
 
