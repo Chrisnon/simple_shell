@@ -21,6 +21,7 @@
 
 /*Mem Handlers*/
 void free_args(char **input, char *line);
+void free_args(char **args)
 void *_calloc(unsigned int size);
 void *fill_an_array(void *a, int el, unsigned int len);
 char *_memcpy(char *dest, char *src, unsigned int n);
