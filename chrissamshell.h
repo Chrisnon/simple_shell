@@ -21,6 +21,8 @@
 
 int main(void);
 
+int _strlen(char *s);
+
 
 /*** Standardized Header Library Files ***/
 #include <errno.h>
