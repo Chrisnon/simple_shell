@@ -40,5 +40,12 @@ int _strlen(char *s);
 #include <string.h>
 
 
+/*PROTOTYPES*/
+/* main.c */
+void shell_interactive(void);
+void shell_no_interactive(void);
+
+
+
 #endif
 
