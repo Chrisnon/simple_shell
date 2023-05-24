@@ -154,6 +154,7 @@ typedef struct _builtin
 
 /* FUNCTIONS Module #1 */
 char *_strdup(char *str);
+char **parse_command(char *command)
 int numcount(char *line);
 char *_strcat(char *dest, char *src);
 int _printf(const char *format, ...);
