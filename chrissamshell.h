@@ -96,7 +96,6 @@ int check_cmd(char **cmd, char *input, int c, char **argv);
 char **parse_cmd(char *input);
 char **parse_command(char *input);
 void signal_to_handle(int sig);
-int handle_builtin(char **cmd, int er);
 
 /*Handling Errors*/
 void print_error(char *input, int counter, char **argv);
@@ -156,11 +155,8 @@ typedef struct _builtin
 } builtin;
 
 /* FUNCTIONS Module #1 */
-char *_strdup(char *str);
 int numcount(char *line);
-char *_strcat(char *dest, char *src);
 int _printf(const char *format, ...);
-int _strcmp(char *s1, char *s2);
 int prstr(va_list *args);
 int findonpath(char **tokens);
 int parse(char *line, int num_tokens, char *argv[], int failcount);
