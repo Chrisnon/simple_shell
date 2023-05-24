@@ -93,6 +93,7 @@ void read_file(char *file, char **argv);
 /*Parse Args Functns Handlers*/
 int check_cmd(char **cmd, char *input, int c, char **argv);
 char **parse_cmd(char *input);
+char **parse_command(char *input);
 void signal_to_handle(int sig);
 int handle_builtin(char **cmd, int er);
 
@@ -154,7 +155,6 @@ typedef struct _builtin
 
 /* FUNCTIONS Module #1 */
 char *_strdup(char *str);
-char **parse_command(char *command)
 int numcount(char *line);
 char *_strcat(char *dest, char *src);
 int _printf(const char *format, ...);
