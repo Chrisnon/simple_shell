@@ -103,7 +103,6 @@ void error_file(char **argv, int c);
 
 /*Handling Environments*/
 void free_env(char **env);
-void free_args(char **args)
 extern char **environ;
 void create_envi(char **envi);
 
