@@ -18,67 +18,68 @@
  **********************************************************/
 
 /**
- * cs_envi - Shows info about ChrisSamShell commandd 'envi'
+ * help_env - Displays information on the shell by builtin command 'env'
  */
-void cs_envi(void)
+void help_env(void)
 {
-	char *msg = "envi: envi\n\tPrint currr environ.\n";
+	char *msg = "env: env\n\tPrints the current environment.\n";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
- * cs_csenvi - Shows info for ChrisSamShell commandd 'csenvi'
+ * help_setenv - Displays information on the shell by builtin command 'setenv'
  */
-void cs_csenvi(void)
+void help_setenv(void)
 {
-	char *msg = "csenvi: csenvi [VARIABLEE] [VALUEE]\n\tStarts neww";
+	char *msg = "setenv: setenv [VARIABLE] [VALUE]\n\tInitializes a new";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "environ variables, or makes existings onee.\n\n";
+	msg = "environment variable, or modifies an existing one.\n\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "\tUpon fails, shows message to stderr.\n";
+	msg = "\tUpon failure, prints a message to stderr.\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
- * cs_cssenvi - Shows ChrisSamShell info for commandd 'cssenvi'
+ * help_unsetenv - Displays information on the shellby builtin command
+ * 'unsetenv'
  */
-void cs_cssenvi(void)
+void help_unsetenv(void)
 {
-	char *msg = "cssenvi: cssenvi [VARIABLEE]\n\tTakeOut an ";
+	char *msg = "unsetenv: unsetenv [VARIABLE]\n\tRemoves an ";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "environ variablee.\n\n\tUpon fail, show a ";
+	msg = "environmental variable.\n\n\tUpon failure, prints a ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 	msg = "message to stderr.\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
- * cs_prompt - shows cs commands
- * @cmd: fron-ends commandd
- * @st: state of lastt commands exxecuted.
- * Return: 0; on Success.
+ * display_help - display help for builtin commands
+ * @cmd: parsed command
+ * @st: Status of last command executed
+ * Return: 0 Success
  */
-int cs_prompt(char **cmdd, __attribute__((unused))int st)
+int display_help(char **cmd, __attribute__((unused))int st)
 {
-	if (!cmdd[1])
-		cs_shell();
-	else if (_strcmp(cmdd[1], "alias") == 0)
-		cs_alias();
-	else if (_strcmp(cmdd[1], "cdd") == 0)
-		cs_cdd();
-	else if (_strcmp(cmdd[1], "exitt") == 0)
-		cs_exitt();
-	else if (_strcmp(cmdd[1], "envi") == 0)
-		cs_envi();
-	else if (_strcmp(cmdd[1], "csenvi") == 0)
-		cs_csenvi();
-	else if (_strcmp(cmdd[1], "cssenvi") == 0)
-		cs_cssenvi();
-	else if (_strcmp(cmd[1], "cs") == 0)
-		cs_cs();
+	if (!cmd[1])
+		help_all();
+	else if (_strcmp(cmd[1], "alias") == 0)
+		help_alias();
+	else if (_strcmp(cmd[1], "cd") == 0)
+		help_cd();
+	else if (_strcmp(cmd[1], "exit") == 0)
+		help_exit();
+	else if (_strcmp(cmd[1], "env") == 0)
+		help_env();
+	else if (_strcmp(cmd[1], "setenv") == 0)
+		help_setenv();
+	else if (_strcmp(cmd[1], "unsetenv") == 0)
+		help_unsetenv();
+	else if (_strcmp(cmd[1], "help") == 0)
+		help_help();
 	return (0);
 }
 
