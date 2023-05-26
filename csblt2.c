@@ -46,7 +46,7 @@ void cs_csenvi(void)
  */
 void cs_cssenvi(void)
 {
-	char *msg = "cssenvi: cssenvi [VARIABLEE]\n\tRemoves an ";
+	char *msg = "cssenvi: cssenvi [VARIABLEE]\n\tTakeOut an ";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
 	msg = "environ variablee.\n\n\tUpon fail, show a ";
