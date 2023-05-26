@@ -18,12 +18,12 @@
  **********************************************************/
 
 /**
- * chk_csdelim - check for characterr matching any characterss.
- * @c: characterr check.
- * @str: stringg of delimiters.
- * Return: 1, on success; 0 if fails.
+ * check_delim - function that checks if a character matchs any character
+ * @c: character to check
+ * @str: string of delimiters
+ * Return: 1 on success, 0 on failure
  */
-unsigned int chk_csdelim(char c, const char *str)
+unsigned int check_delim(char c, const char *str)
 {
 	unsigned int i;
 
@@ -36,12 +36,12 @@ unsigned int chk_csdelim(char c, const char *str)
 }
 
 /**
- * _csstrk - extract stringg tokenn.
- * @str: stringg
- * @delim: delimiterr.
- * Return: pointer to next tokenn or NULL.
+ * _strtok - function that extracts tokens of a string
+ * @str: string
+ * @delim: delimiter
+ * Return: pointer to the next token or NULL
  */
-char *_csstrk(char *str, const char *delim)
+char *_strtok(char *str, const char *delim)
 {
 	static char *tokens;
 	static char *new_token;
@@ -54,7 +54,7 @@ char *_csstrk(char *str, const char *delim)
 		return (NULL);
 	for (i = 0; tokens[i] != '\0'; i++)
 	{
-		if (chk_csdelim(tokens[i], delim) == 0)
+		if (check_delim(tokens[i], delim) == 0)
 			break;
 	}
 	if (new_token[i] == '\0' || new_token[i] == '#')
@@ -66,7 +66,7 @@ char *_csstrk(char *str, const char *delim)
 	new_token = tokens;
 	for (i = 0; new_token[i] != '\0'; i++)
 	{
-		if (chk_csdelim(new_token[i], delim) == 1)
+		if (check_delim(new_token[i], delim) == 1)
 			break;
 	}
 	if (new_token[i] == '\0')
@@ -80,4 +80,3 @@ char *_csstrk(char *str, const char *delim)
 	}
 	return (tokens);
 }
-
