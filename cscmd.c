@@ -18,11 +18,11 @@
  **********************************************************/
 
 /**
- * csprt_cmdd - recieves user input commands.
- * @input: gather usr inputs stringss.
- * Return: user input strings used as args.
+ * parse_cmd - Parses the command recieved from stdin
+ * @input: String gathered from stdin
+ * Return: Parsed strings to be used as arguments
  */
-char **csprt_cmdd(char *input)
+char **parse_cmd(char *input)
 {
 	char **arguments;
 	char *argument;
@@ -50,4 +50,3 @@ char **csprt_cmdd(char *input)
 
 	return (arguments);
 }
-
