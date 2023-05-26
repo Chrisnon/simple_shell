@@ -41,23 +41,23 @@
 
 
 /*CS Mems*/
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void *fill_an_array(void *a, int el, unsigned int len);
+void *_csrealloc(void *ptr, unsigned int oldd_cssize, unsigned int neww_cssize);
+void *cs_array_fill(void *a, int el, unsigned int len);
 void free_env(char **env);
-char *_memcpy(char *dest, char *src, unsigned int n);
-void *_calloc(unsigned int size);
+char *_cpycsmem(char *destt, char *src, unsigned int n);
+void *_cscalloc(unsigned int size);
 void free_all(char **input, char *line);
 
 /*Inputt Functions and Misc for ChrisSamShell*/
 
-char *_getline();
-char **separator(char *input);
-char *space(char *str);
+char *csget_line();
+char **cssep(char *input);
+char *csspace(char *str);
 void prompt(void);
-unsigned int check_delim(char c, const char *str);
-char *_strtok(char *str, const char *delim);
-char *enter(char *string);
-void hashtag_handler(char *buff);
+unsigned int chk_csdelim(char c, const char *str);
+char *_csstrk(char *str, const char *delim);
+char *csenter(char *string);
+void cs_htag(char *buf);
 int history(char *input);
 
 
