@@ -18,10 +18,10 @@
  **********************************************************/
 
 /**
- * main - ChrisSamShell entring pt.
- * @argc: counts args
- * @argv: vector to args.
- * Return: condition status returns.
+ * main - Entry point to program
+ * @argc: Argument count
+ * @argv: Argument vector
+ * Return: Returns condition
  */
 int main(__attribute__((unused)) int argc, char **argv)
 {
@@ -65,4 +65,3 @@ int main(__attribute__((unused)) int argc, char **argv)
 	}
 	return (stat);
 }
-
