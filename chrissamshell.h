@@ -86,28 +86,28 @@ int _isalpha(int c);
 
 /*ChrisSamShell Files Args Functionns*/
 
-void read_file(char *file, char **argv);
-void exit_bul_for_file(char **cmd, char *line, FILE *fd);
-void treat_file(char *line, int count, FILE *fp, char **argv);
+void cs_reads(char *reads, char **argv);
+void cs_exitt(char **cmdd, char *line, FILE *fd);
+void cs_treats(char *line, int count, FILE *fp, char **argv);
 
 /*ChrisSamShell Args for Backend or Executee*/
 
 char **parse_cmd(char *input);
-int check_cmd(char **cmd, char *input, int c, char **argv);
-int handle_builtin(char **cmd, int er);
-void signal_to_handle(int sig);
+int cs_cmdd(char **cmdd, char *input, int c, char **argv);
+int handle_builtin(char **cmdd, int er);
+void cs_sigg(int sigg);
 
 
 /*CSPrint Functionns*/
 
 void print_number_int(int n);
 void print_number(unsigned int n);
-int print_echo(char **cmd);
+int print_echo(char **cmdd);
 
 /*Err Handlings for ChrisSamShell*/
 
 void print_error(char *input, int counter, char **argv);
-void _prerror(char **argv, int c, char **cmd);
+void _prerror(char **argv, int c, char **cmdd);
 void error_file(char **argv, int c);
 
 /*Struct Builtin Commandss*/
@@ -133,7 +133,7 @@ char *_getenv(char *name);
 
 /*CSHelpers*/
 
-void help_env(void);
+void cs_envi(void);
 void help_history(void);
 void help_alias(void);
 void help_cd(void);
