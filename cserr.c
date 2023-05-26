@@ -18,63 +18,62 @@
  **********************************************************/
 
 /**
- * cs_err - shows message abt error.
- * @input: recieves user's input commands.
- * @counter: chrissamshell counts.
- * @argv: args of program beinning || chrissamshell)
+ * print_error - Displays error message
+ * @input: Input recieved from user
+ * @counter: Count of shell loop
+ * @argv: Arguments before program starts(argv[0] == Shell Program Name)
  */
 
-void cs_err(char *input, int counter, char **argv)
+void print_error(char *input, int counter, char **argv)
 {
-	char *err;
+	char *er;
 
 	PRINT(argv[0]);
 	PRINT(": ");
 	er = _itoa(counter);
-	PRINT(err);
-	free(err);
+	PRINT(er);
+	free(er);
 	PRINT(": ");
 	PRINT(input);
 	PRINT(": not found\n");
 }
 
 /**
- *  _cserr - customized error prints.
- * @argv: args of program beinning || chrissamshell)
- * @c: counts err
- * @cmdd: frontend of array od strings commands.
+ *  _prerror - Prints custom Error
+ * @argv: Arguments before program starts(argv[0] == Shell Program Name)
+ * @c: Error Count
+ * @cmd: Array of parsed command strings
  */
 
-void _cserr(char **argv, int c, char **cmdd)
+void _prerror(char **argv, int c, char **cmd)
 {
-	char *err = _itoa(c);
+	char *er = _itoa(c);
 
 	PRINT(argv[0]);
 	PRINT(": ");
-	PRINT(err);
+	PRINT(er);
 	PRINT(": ");
-	PRINT(cmdd[0]);
-	PRINT(": Unallowed number: ");
-	PRINT(cmdd[1]);
+	PRINT(cmd[0]);
+	PRINT(": Illegal number: ");
+	PRINT(cmd[1]);
 	PRINT("\n");
-	free(err);
+	free(er);
 }
 
 /**
- * err_cs - customized errors prints
- * @argv: args of program beinning || chrissamshell)
- * @c: counts err
+ * error_file - Prints custom Error
+ * @argv: Arguments before program starts(argv[0] == Shell Program Name)
+ * @c: Error Count
  */
-void err_cs(char **argv, int c)
+void error_file(char **argv, int c)
 {
-	char *err = _itoa(c);
+	char *er = _itoa(c);
 
 	PRINT(argv[0]);
 	PRINT(": ");
-	PRINT(err);
-	PRINT(": unable to open ");
+	PRINT(er);
+	PRINT(": Can't open ");
 	PRINT(argv[1]);
 	PRINT("\n");
-	free(err);
+	free(er);
 }
-
