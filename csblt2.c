@@ -1,68 +1,84 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * help_env - Displays information on the shell by builtin command 'env'
+ * cs_envi - Shows info about ChrisSamShell commandd 'envi'
  */
-void help_env(void)
+void cs_envi(void)
 {
-	char *msg = "env: env\n\tPrints the current environment.\n";
+	char *msg = "envi: envi\n\tPrint currr environ.\n";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
- * help_setenv - Displays information on the shell by builtin command 'setenv'
+ * cs_csenvi - Shows info for ChrisSamShell commandd 'csenvi'
  */
-void help_setenv(void)
+void cs_csenvi(void)
 {
-	char *msg = "setenv: setenv [VARIABLE] [VALUE]\n\tInitializes a new";
+	char *msg = "csenvi: csenvi [VARIABLEE] [VALUEE]\n\tStarts neww";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "environment variable, or modifies an existing one.\n\n";
+	msg = "environ variables, or makes existings onee.\n\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "\tUpon failure, prints a message to stderr.\n";
+	msg = "\tUpon fails, shows message to stderr.\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
- * help_unsetenv - Displays information on the shellby builtin command
- * 'unsetenv'
+ * cs_cssenvi - Shows ChrisSamShell info for commandd 'cssenvi'
  */
-void help_unsetenv(void)
+void cs_cssenvi(void)
 {
-	char *msg = "unsetenv: unsetenv [VARIABLE]\n\tRemoves an ";
+	char *msg = "cssenvi: cssenvi [VARIABLEE]\n\TakeOut an ";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "environmental variable.\n\n\tUpon failure, prints a ";
+	msg = "environ variablee.\n\n\tUpon fail, show a ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 	msg = "message to stderr.\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
- * display_help - display help for builtin commands
- * @cmd: parsed command
- * @st: Status of last command executed
- * Return: 0 Success
+ * cs_prompt - shows cs commands
+ * @cmd: fron-ends commandd
+ * @st: state of lastt commands exxecuted.
+ * Return: 0; on Success.
  */
-int display_help(char **cmd, __attribute__((unused))int st)
+int cs_prompt(char **cmdd, __attribute__((unused))int st)
 {
-	if (!cmd[1])
-		help_all();
-	else if (_strcmp(cmd[1], "alias") == 0)
-		help_alias();
-	else if (_strcmp(cmd[1], "cd") == 0)
-		help_cd();
-	else if (_strcmp(cmd[1], "exit") == 0)
-		help_exit();
-	else if (_strcmp(cmd[1], "env") == 0)
-		help_env();
-	else if (_strcmp(cmd[1], "setenv") == 0)
-		help_setenv();
-	else if (_strcmp(cmd[1], "unsetenv") == 0)
-		help_unsetenv();
+	if (!cmdd[1])
+		cs_shell();
+	else if (_strcmp(cmdd[1], "alias") == 0)
+		cs_alias();
+	else if (_strcmp(cmdd[1], "cd") == 0)
+		cs_cdd();
+	else if (_strcmp(cmdd[1], "exit") == 0)
+		cs_exitt();
+	else if (_strcmp(cmdd[1], "env") == 0)
+		cs_envi();
+	else if (_strcmp(cmdd[1], "setenv") == 0)
+		cs_csenvi();
+	else if (_strcmp(cmdd[1], "unsetenv") == 0)
+		cs_cssenvi();
 	else if (_strcmp(cmd[1], "help") == 0)
-		help_help();
+		cs_cs();
 	return (0);
 }
 
