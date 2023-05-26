@@ -40,29 +40,6 @@ int _strlen(char *s);
 #include <string.h>
 
 
-/*PROTOTYPES*/
-/* main.c */
-void shell_interactive(void);
-void shell_no_interactive(void);
-
-/*shell_interactive.c */
-char *read_line(void);
-char **split_line(char *line);
-int execute_args(char **args);
-
-/* execute_args */
-int new_process(char **args);
-
-/* shell_no_interactive */
-char *read_stream(void);
-
-/*---Builtin func---*/
-int own_cd(char **args);
-int own_exit(char **args);
-int own_env(char **args);
-int own_help(char **args);
-
-
 
 /*Macros*/
 #define TOK_DELIM " \t\r\n\a\""
@@ -83,28 +60,28 @@ typedef struct fmt
 } fmt;
 
 /*Functions Module#1 */
-
+int _csshell(const char *format, ...);
+int numcount(char *line);
 void _puts(char *str);
-char *_strdup(char *str);
 char *_strcat(char *dest, char *src);
-int _strcmp(char *s1, char *s2);
 int parse(char *line, int num_tokens, char *argv[], int failcount);
 int csexe(char *line, char **ar, char *nln, char **arry, char **argv, int flcnt);
-void myfree(char *line, char **ar, char *newline, char **array);
 int _strncmp(char *s1, char *s2, int len);
+void changedir(char **ar);
 int checkbltin(char *line, char **ar, char *newline, char **array);
-int numcount(char *line);
 int searchpath(char *p, char **tokens);
+char *_strdup(char *str);
 int findonpath(char **tokens);
 void executepath(char *p, char **tokens);
-int _csshell(const char *format, ...);
 int chkfmt(va_list *args, const char *format, int i);
 int prchr(va_list *args);
+int _strcmp(char *s1, char *s2);
 int prstr(va_list *args);
+void myfree(char *line, char **ar, char *newline, char **array);
 int prdgt(va_list *args);
 void getdigits(int n);
 int _putchar(char c);
-void changedir(char **ar);
+
 
 
 #endif /* SIMPLE_SHELL_H_ */
