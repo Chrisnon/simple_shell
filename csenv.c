@@ -22,26 +22,25 @@
  * @envi: Array to store Enviroment Variables
  */
 
-void mk_csenvi(char **csenvi)
+void create_envi(char **envi)
 {
 	int i;
 
 	for (i = 0; environ[i]; i++)
-		csenvi[i] = _strdup(environ[i]);
-	csenvi[i] = NULL;
+		envi[i] = _strdup(environ[i]);
+	envi[i] = NULL;
 }
 
 /**
- * permit_csenvi - permit created variabless.
- * @env:  environ varaibles of arrays.
+ * free_env - Frees the memory of the created Enviroment Variables array
+ * @env:  Array of Environment variables
  */
-void permit_csenvi(char **csenvi)
+void free_env(char **env)
 {
 	int i;
 
-	for (i = 0; csenvi[i]; i++)
+	for (i = 0; env[i]; i++)
 	{
-		free(csenvi[i]);
+		free(env[i]);
 	}
 }
-
