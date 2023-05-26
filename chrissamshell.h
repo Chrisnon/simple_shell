@@ -18,143 +18,139 @@
  *
  **********************************************************/
 
-/*MACROS*/
-#define DELIMITER " \t\r\n\a"
+/***** MACROS *****/
 #define PRINT(c) (write(STDERR_FILENO, c, _strlen(c)))
 #define BUFSIZE 10240
+#define DELIMITER " \t\r\n\a"
 
-
-/*Standardized Libs*/
+/*** STANDARD LIBRARIES ***/
+#include <stdio.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <sys/types.h>
 #include <string.h>
-#include <stdio.h>
+#include <sys/wait.h>
+#include <stdlib.h>
 #include <signal.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <sys/wait.h>
-#include <stdarg.h>
-#include <dirent.h>
-#include <linux/limits.h>
 #include <errno.h>
+#include <linux/limits.h>
 
+/******** STRING HANDLER FUNCTIONS **********/
 
-/*CS Mems*/
-void *_csrealloc(void *ptr, unsigned int oldd_cssize, unsigned int neww_cssize);
-void *cs_array_fill(void *a, int el, unsigned int len);
-void permit_csenvi(char **csenvi);
-char *_cpycsmem(char *destt, char *src, unsigned int n);
-void *_cscalloc(unsigned int size);
-void permit_cs(char **input, char *line);
+char *_strncpy(char *dest, char *src, int n);
+int _strlen(char *s);
+int _putchar(char c);
+int _atoi(char *s);
+void _puts(char *str);
+int _strcmp(char *s1, char *s2);
+int _isalpha(int c);
+void array_rev(char *arr, int len);
+int intlen(int num);
+char *_itoa(unsigned int n);
+char *_strcat(char *dest, char *src);
+char *_strcpy(char *dest, char *src);
+char *_strchr(char *s, char c);
+int _strncmp(const char *s1, const char *s2, size_t n);
+char *_strdup(char *str);
 
-/*Inputt Functions and Misc for ChrisSamShell*/
+/*********** MEMORY HANDLERS ***********/
 
-char *csget_line();
-char **cssep(char *input);
-char *csspace(char *str);
-void cs_prompt1(void);
-unsigned int chk_csdelim(char c, const char *str);
-char *_csstrk(char *str, const char *delim);
-char *csenter(char *string);
-void cs_htag(char *buf);
-int csrec(char *input);
+void free_env(char **env);
+void *fill_an_array(void *a, int el, unsigned int len);
+char *_memcpy(char *dest, char *src, unsigned int n);
+void *_calloc(unsigned int size);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void free_all(char **input, char *line);
 
+/****** MISCELLANEOUS AND INPUT FUNCTIONS *******/
 
-/*Environ Handlings for ChrisSamShell*/
+char *_getline();
+char *space(char *str);
+char *enter(char *string);
+void hashtag_handler(char *buff);
+void prompt(void);
+unsigned int check_delim(char c, const char *str);
+char *_strtok(char *str, const char *delim);
+int history(char *input);
+char **separator(char *input);
+
+/****** FILE ARGUMENT HANDLER FUNCTIONS ******/
+
+void read_file(char *file, char **argv);
+void treat_file(char *line, int count, FILE *fp, char **argv);
+void exit_bul_for_file(char **cmd, char *line, FILE *fd);
+
+/****** PARSED ARGUMENT HANDLER FUNCTIONS *****/
+
+char **parse_cmd(char *input);
+int handle_builtin(char **cmd, int er);
+int check_cmd(char **cmd, char *input, int c, char **argv);
+void signal_to_handle(int sig);
+
+/******* ERROR HANDLERS ******/
+
+void print_error(char *input, int counter, char **argv);
+void _prerror(char **argv, int c, char **cmd);
+void error_file(char **argv, int c);
+
+/****** ENVIRONMENT HANDLERS ******/
 
 extern char **environ;
-void permit_csenvi(char **csenvi);
-void mk_csenvi(char **csenvi);
+void create_envi(char **envi);
+void free_env(char **env);
 
-/*Handlings for ChrisSamShell Strinngs*/
-int _cmpcsstrn(const char *s1, const char *s2, size_t n);
-char *_cpycsstrn(char *destt, char *src, int n);
-char *_catcsstr(char *destt, char *src);
-int _putchar(char c);
-int _acs(char *s);
-char *_dupcsstr(char *str);
-void _cspts(char *str);
-int _cmpcsstr(char *s1, char *s2);
-int lencsint(int num);
-int _lencsstr(char *s);
-char *_acs(unsigned int n);
-char *_cpycsstr(char *destt, char *src);
-void rev_csarr(char *arr, int len);
-char *_chrcsstr(char *s, char c);
-int _csalph(int c);
+/****** PRINTING FUNCTIONS *****/
 
-/*ChrisSamShell Files Args Functionns*/
+void print_number(unsigned int n);
+void print_number_int(int n);
+int print_echo(char **cmd);
 
-void cs_reads(char *reads, char **argv);
-void cs_exitt(char **cmdd, char *line, FILE *fd);
-void cs_treats(char *line, int count, FILE *fp, char **argv);
+/******* PATH FINDER *******/
 
-/*ChrisSamShell Args for Backend or Executee*/
+int path_cmd(char **cmd);
+char *build(char *token, char *value);
+char *_getenv(char *name);
 
-char **csprt_cmdd(char *input);
-int cs_cmdd(char **cmdd, char *input, int c, char **argv);
-int cs_frontend(char **cmdd, int er);
-void cs_sigg(int sigg);
+/******* HELP HANDLERS *******/
 
+void help_env(void);
+void help_setenv(void);
+void help_unsetenv(void);
+void help_history(void);
+void help_all(void);
+void help_alias(void);
+void help_cd(void);
+void help_exit(void);
+void help_help(void);
+int display_help(char **cmd, __attribute__((unused))int st);
 
-/*CSPrint Functionns*/
+/****** BUILTIN COMMAND HANDLERS AND EXECUTE ******/
 
-void cs_print_int(int n);
-void cs_print(unsigned int n);
-int csprt_ech(char **cmdd);
+int check_builtin(char **cmd);
+int handle_builtin(char **cmd, int st);
+void exit_bul(char **cmd, char *input, char **argv, int c, int stat);
+int change_dir(char **cmd, __attribute__((unused))int st);
+int dis_env(__attribute__((unused)) char **cmd,
+	    __attribute__((unused)) int st);
+int echo_bul(char **cmd, int st);
+int history_dis(__attribute__((unused))char **c,
+		__attribute__((unused)) int st);
 
-/*Err Handlings for ChrisSamShell*/
-
-void cs_err(char *input, int counter, char **argv);
-void _cserr(char **argv, int c, char **cmdd);
-void err_cs(char **argv, int c);
-
-/*Struct Builtin Commandss*/
+/****** BUILT-IN COMMANDS STRUCT *****/
 
 /**
- * struct _cst - contain builtin commandss
- * functionns implements resectvely
- * @command: - builtin
- * @function: - customized pointer to
- * similar functions of builtin commandss.
+ * struct _builtin - Defines a struct that conatins built-in commands
+ * with their respective implementation functions
+ * @command: - Built-in command
+ * @function: - Pointer to custom functions that have
+ * similar functionalities as the built-in commands
  */
-typedef struct _cst
+typedef struct _builtin
 {
 	char *command;
 	int (*function)(char **line, int st);
-} cst;
-
-/*CSPath*/
-
-char *csblt(char *token, char *value);
-int csfind_cmdd(char **cmdd);
-char *_obcsenvi(char *name);
-
-/*CSHelpers*/
-
-void cs_envi(void);
-void help_history(void);
-void cs_alias(void);
-void cs_cdd(void);
-void cs_exitt(void);
-void cs_cssenvi(void);
-void cs_shell(void);
-void cs_cs(void);
-int cs_prompt(char **cmdd, __attribute__((unused))int st);
-void cs_csenvi(void);
-
-/*Backend or Execute commands for builtin*/
-
-int cs_frontend(char **cmdd, int st);
-int frontend_parse(char **cmdd);
-int cs_dirr(char **cmdd, __attribute__((unused))int st);
-int cs_prompt(__attribute__((unused)) char **cmdd,
-	    __attribute__((unused)) int st);
-void exitx_blt(char **cmdd, char *input, char **argv, int c, int stat);
-int cs_foo(char **cmdd, int st);
-int rec_cs(__attribute__((unused))char **c,
-		__attribute__((unused)) int st);
+} builtin;
 
 
 
