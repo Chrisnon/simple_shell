@@ -18,24 +18,24 @@
  **********************************************************/
 
 /**
- * cs_dirr - amends dirc.
- * @cmdd: front-end commandds.
- * @st: state of last commandd executed.
- * Return: 0; on success: 1 for failed.
+ * change_dir - Changes directory
+ * @cmd: Parsed command
+ * @st: Status of last command executed
+ * Return: 0 on success 1 if failed (For OLDPWD Always 0 incase of no OLDPWD)
  */
-int cs_dirr(char **cmdd, __attribute__((unused))int st)
+int change_dir(char **cmd, __attribute__((unused))int st)
 {
 	int value = -1;
 	char cwd[PATH_MAX];
 
-	if (cmdd[1] == NULL)
-		value = chdir(getenv("HOMEE"));
-	else if (_strcmp(cmdd[1], "-") == 0)
+	if (cmd[1] == NULL)
+		value = chdir(getenv("HOME"));
+	else if (_strcmp(cmd[1], "-") == 0)
 	{
 		value = chdir(getenv("OLDPWD"));
 	}
 	else
-		value = chdir(cmdd[1]);
+		value = chdir(cmd[1]);
 
 	if (value == -1)
 	{
@@ -52,12 +52,12 @@ int cs_dirr(char **cmdd, __attribute__((unused))int st)
 }
 
 /**
- * cs_prompt - shows environ variabless
- * @cmdd: user input commands executed
- * @st: state of final commandd executed
- * Return: Always 0.
+ * dis_env - Display enviroment variable
+ * @cmd: parsed command
+ * @st: status of last command executed
+ * Return: Always 0
  */
-int cs_prompt(__attribute__((unused)) char **cmdd, __attribute__((unused)) int st)
+int dis_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int st)
 {
 	size_t i;
 	int len;
@@ -72,27 +72,27 @@ int cs_prompt(__attribute__((unused)) char **cmdd, __attribute__((unused)) int s
 }
 
 /**
- * cs_foo - case executes
- * @st: state of executed commands
- * @cmd: pfrontends commandds.
- * Return: Always 1.
+ * echo_bul - execute echo cases
+ * @st: statue of last command executed
+ * @cmd: parsed command
+ * Return: Always 1 Or execute normal echo
  */
-int cs_foo(char **cmdd, int st)
+int echo_bul(char **cmd, int st)
 {
 	char *path;
 	unsigned int pid = getppid();
 
-	if (_strncmp(cmdd[1], "$?", 2) == 0)
+	if (_strncmp(cmd[1], "$?", 2) == 0)
 	{
 		print_number_int(st);
 		PRINT("\n");
 	}
-	else if (_strncmp(cmdd[1], "$$", 2) == 0)
+	else if (_strncmp(cmd[1], "$$", 2) == 0)
 	{
 		print_number(pid);
 		PRINT("\n");
 	}
-	else if (_strncmp(cmdd[1], "$PATH", 5) == 0)
+	else if (_strncmp(cmd[1], "$PATH", 5) == 0)
 	{
 		path = _getenv("PATH");
 		PRINT(path);
@@ -100,20 +100,20 @@ int cs_foo(char **cmdd, int st)
 		free(path);
 	}
 	else
-		return (print_echo(cmdd));
+		return (print_echo(cmd));
 
 	return (1);
 }
 
 /**
- * rec_cs - shows user's inputs in ChrisSamShell
- * @c: user input at frontend
- * @st: state of user input commnds
- * Return: 0, success and -1 on fail.
+ * history_dis - display history of user input on simple_shell
+ * @c: parsed command
+ * @st: status of last command executed
+ * Return: 0 success or -1 if fail
  */
-int rec_cs(__attribute__((unused))char **c, __attribute__((unused))int st)
+int history_dis(__attribute__((unused))char **c, __attribute__((unused))int st)
 {
-	char *filename = ".Chris_Sam_shell";
+	char *filename = ".simple_shell_history";
 	FILE *fp;
 	char *line = NULL;
 	size_t len = 0;
@@ -139,4 +139,3 @@ int rec_cs(__attribute__((unused))char **c, __attribute__((unused))int st)
 	fclose(fp);
 	return (0);
 }
-
