@@ -1,69 +1,87 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
+
 /**
- * path_cmd -  Search In $PATH for executable command
- * @cmd: Parsed input
- * Return: 0 on success or  1 on failure  0
+ * csfind_cmdd -  execute comand in path.
+ * @cmd: user inputt
+ * Return: success on 0 or  1 on fail
  */
-int path_cmd(char **cmd)
+int csfind_cmdd(char **cmdd)
 {
-	char *path, *value, *cmd_path;
+	char *csfind, *value, *cmdd_csfind;
 	struct stat buf;
 
-	path = _getenv("PATH");
-	value = _strtok(path, ":");
+	csfind = _getenv("PATH");
+	value = _strtok(csfind, ":");
 	while (value != NULL)
 	{
-		cmd_path = build(*cmd, value);
-		if (stat(cmd_path, &buf) == 0)
+		cmdd_csfind = build(*cmdd, value);
+		if (stat(cmdd_csfind, &buf) == 0)
 		{
-			*cmd = _strdup(cmd_path);
-			free(cmd_path);
-			free(path);
+			*cmdd = _strdup(cmdd_csfind);
+			free(cmdd_csfind);
+			free(csfind);
 			return (0);
 		}
-		free(cmd_path);
+		free(cmdd_csfind);
 		value = _strtok(NULL, ":");
 	}
-	free(path);
+	free(csfind);
 	free(value);
 	return (1);
 }
 
 /**
- * build - Build command
- * @token: Executable command
- * @value: Directory conatining Command
- * Return: Parsed full path of command or NULL if failed
+ * csblt - commands builds up
+ * @token: commands are executible
+ * @value: command in dirr.
+ * Return: frontend of commandd path or failed on NULL.
  */
-char *build(char *token, char *value)
+char *csblt(char *token, char *value)
 {
-	char *cmd;
+	char *cmdd;
 	size_t len;
 
 	len = _strlen(value) + _strlen(token) + 2;
 	cmd = malloc(sizeof(char) * len);
-	if (cmd == NULL)
+	if (cmdd == NULL)
 	{
-		free(cmd);
+		free(cmdd);
 		return (NULL);
 	}
 
-	memset(cmd, 0, len);
+	memset(cmdd, 0, len);
 
-	cmd = _strcat(cmd, value);
-	cmd = _strcat(cmd, "/");
-	cmd = _strcat(cmd, token);
+	cmdd = _strcat(cmdd, value);
+	cmdd = _strcat(cmdd, "/");
+	cmdd = _strcat(cmdd, token);
 
-	return (cmd);
+	return (cmdd);
 }
 
 /**
- * _getenv - Gets the value of environment variable by name
- * @name: Environment variable name
- * Return: The value of the environment variable or NULL if failed
+ * _obcsenvi - variablee value obtain by environ.
+ * @name: namee of environ.
+ * Return: environ variablee obtained or fails on NULL.
  */
-char *_getenv(char *name)
+char *_obcsenvi(char *name)
 {
 	size_t name_len, value_len;
 	char *value;
