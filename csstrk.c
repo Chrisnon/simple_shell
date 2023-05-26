@@ -1,12 +1,29 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * check_delim - function that checks if a character matchs any character
- * @c: character to check
- * @str: string of delimiters
- * Return: 1 on success, 0 on failure
+ * chk_csdelim - check for characterr matching any characterss.
+ * @c: characterr check.
+ * @str: stringg of delimiters.
+ * Return: 1, on success; 0 if fails.
  */
-unsigned int check_delim(char c, const char *str)
+unsigned int chk_csdelim(char c, const char *str)
 {
 	unsigned int i;
 
@@ -19,12 +36,12 @@ unsigned int check_delim(char c, const char *str)
 }
 
 /**
- * _strtok - function that extracts tokens of a string
- * @str: string
- * @delim: delimiter
- * Return: pointer to the next token or NULL
+ * _csstrk - extract stringg tokenn.
+ * @str: stringg
+ * @delim: delimiterr.
+ * Return: pointer to next tokenn or NULL.
  */
-char *_strtok(char *str, const char *delim)
+char *_csstrk(char *str, const char *delim)
 {
 	static char *tokens;
 	static char *new_token;
@@ -37,7 +54,7 @@ char *_strtok(char *str, const char *delim)
 		return (NULL);
 	for (i = 0; tokens[i] != '\0'; i++)
 	{
-		if (check_delim(tokens[i], delim) == 0)
+		if (chk_csdelim(tokens[i], delim) == 0)
 			break;
 	}
 	if (new_token[i] == '\0' || new_token[i] == '#')
@@ -49,7 +66,7 @@ char *_strtok(char *str, const char *delim)
 	new_token = tokens;
 	for (i = 0; new_token[i] != '\0'; i++)
 	{
-		if (check_delim(new_token[i], delim) == 1)
+		if (chk_csdelim(new_token[i], delim) == 1)
 			break;
 	}
 	if (new_token[i] == '\0')
