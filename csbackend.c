@@ -18,19 +18,19 @@
  **********************************************************/
 
 /**
- * cs_cmdd - commands in defined path from user input executed
- * @cmdd: front-end commands passes from arrary to stringgs
- * @input: frees input from user.
- * @c:execute not found from ChrisSamShell.
- * @argv: program start afer args || ChrisSamShell)
- * Return: wrong innput -1; 0 if exceuted; 1 if NULL.
+ * check_cmd - Excutes commands found in predefined path
+ * @cmd: Array of parsed command strings
+ * @input: Input recieved from user (to be freed)
+ * @c:Shell Excution Time Case of Command Not Found
+ * @argv: Arguments before program starts(argv[0] == Shell Program Name)
+ * Return: 1 Case Command Null -1 Wrong Command 0 Command Excuted
  */
-int cs_cmdd(char **cmdd, char *input, int c, char **argv)
+int check_cmd(char **cmd, char *input, int c, char **argv)
 {
 	int wstatus;
 	pid_t pid;
 
-	if (*cmdd == NULL)
+	if (*cmd == NULL)
 		return (EXIT_FAILURE);
 	pid = fork();
 	if (pid == -1)
@@ -40,15 +40,15 @@ int cs_cmdd(char **cmdd, char *input, int c, char **argv)
 	}
 	if (pid == 0)
 	{
-		if (_strncmp(*cmdd, "./", 2) != 0 && _strncmp(*cmdd, "/", 1) != 0)
-			path_cmd(cmdd);
-		if (access(cmdd[0], R_OK) != 0)
+		if (_strncmp(*cmd, "./", 2) != 0 && _strncmp(*cmd, "/", 1) != 0)
+			path_cmd(cmd);
+		if (access(cmd[0], R_OK) != 0)
 		{
-			print_error(cmdd[0], c, argv);
-			free_all(cmdd, input);
+			print_error(cmd[0], c, argv);
+			free_all(cmd, input);
 			exit(127);
 		}
-		if (execve(*cmdd, cmdd, environ) == -1)
+		if (execve(*cmd, cmd, environ) == -1)
 			return (2);
 		else
 			return (0);
@@ -67,14 +67,15 @@ int cs_cmdd(char **cmdd, char *input, int c, char **argv)
 }
 
 /**
- * cs_sigg - Configures ^C not to terminate our shell
+ * signal_to_handle - Configures ^C not to terminate our shell
  * @sig: Incoming Signal
  */
-void cs_sigg(int sigg)
+void signal_to_handle(int sig)
 {
-	if (sigg == SIGINT)
+	if (sig == SIGINT)
 	{
 		PRINT("\n$ ");
 	}
 }
+
 
