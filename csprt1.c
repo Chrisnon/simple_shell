@@ -18,10 +18,11 @@
  **********************************************************/
 
 /**
- * cs_prompt1 - printss user input '$' to sdtout
+ * prompt - function that prints '$' to standard output
  */
 void prompt(void)
 {
 	PRINT("$ ");
 }
+
 
