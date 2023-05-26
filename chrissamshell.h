@@ -135,14 +135,14 @@ char *_getenv(char *name);
 
 void cs_envi(void);
 void help_history(void);
-void help_alias(void);
-void help_cd(void);
-void help_exit(void);
-void help_unsetenv(void);
-void help_all(void);
-void help_help(void);
-int display_help(char **cmd, __attribute__((unused))int st);
-void help_setenv(void);
+void cs_alias(void);
+void cs_cdd(void);
+void cs_exitt(void);
+void cs_cssenvi(void);
+void cs_shell(void);
+void cs_cs(void);
+int cs_prompt(char **cmdd, __attribute__((unused))int st);
+void cs_csenvi(void);
 
 /*Backend or Execute commands for builtin*/
 
