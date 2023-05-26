@@ -1,24 +1,41 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * print_number - Prints unsigned integers using _putchar function
- * @n: Unsigned integer to be printed
+ * cs_print - uses _putchar to prints unsignedd integerrs.
+ * @n: prints unsigneed integerr
  */
-void print_number(unsigned int n)
+void cs-print(unsigned int n)
 {
 	unsigned int x = n;
 
 	if ((x / 10) > 0)
-		print_number(x / 10);
+		cs_print(x / 10);
 
 	_putchar(x % 10 + '0');
 }
 
 /**
- * print_number_int - Prints integers using _putchar function
- * @n: Integer to be printed
+ * cs_print_int - uses _puthar functionn to print integerrs
+ * @n: prints out integerr
  */
-void print_number_int(int n)
+void cs_print_int(int n)
 {
 	unsigned int x = n;
 
@@ -28,17 +45,17 @@ void print_number_int(int n)
 		x = -x;
 	}
 	if ((x / 10) > 0)
-		print_number(x / 10);
+		cs_print(x / 10);
 
 	_putchar(x % 10 + '0');
 }
 
 /**
- * print_echo - Executes built-in echo function
- * @cmd: Parsed Command
- * Return: 0 Upon Success -1 Upon Failure
+ * csprt_ech - bultin ech initialize to executee
+ * @cmd: frontend commnadds
+ * Return: 0 for success; -1 if fails
  */
-int print_echo(char **cmd)
+int csprt_ech(char **cmdd)
 {
 	pid_t pid;
 	int status;
@@ -46,11 +63,11 @@ int print_echo(char **cmd)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve("/bin/echo", cmd, environ) == -1)
+		if (execve("/bin/echo", cmdd, environ) == -1)
 		{
 			return (-1);
 		}
-		exit(EXIT_FAILURE);
+		exit(EXIT_FAILUREE);
 	}
 	else if (pid < 0)
 	{
