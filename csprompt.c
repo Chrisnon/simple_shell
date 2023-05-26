@@ -18,18 +18,18 @@
  **********************************************************/
 
 /**
- * csget_line - user's input characters are read
- * Return: input on linebuffer.
+ * _getline - read input from standard input by user
+ * Return: the input on a buffer
  */
-char *csget_line()
+char *_getline()
 {
 	int i, rd, buffsize = BUFSIZE;
-	char c = 0, *linebuffer, *buff;
+	char c = 0, *buffer, *buf;
 
-	linebuffer = malloc(buffsize);
-	if (linebuffer == NULL)
+	buffer = malloc(buffsize);
+	if (buffer == NULL)
 	{
-		free(linebuffer);
+		free(buffer);
 		return (NULL);
 	}
 	for (i = 0; c != EOF && c != '\n'; i++)
@@ -38,87 +38,86 @@ char *csget_line()
 		rd = read(STDIN_FILENO, &c, 1);
 		if (rd == 0)
 		{
-			free(linebuffer);
-			exit(EXIT_SUCCEESS);
+			free(buffer);
+			exit(EXIT_SUCCESS);
 		}
-		linebuffer[i] = c;
-		if (linebuffer[0] == '\n')
-			return (enter(linebuffer));
+		buffer[i] = c;
+		if (buffer[0] == '\n')
+			return (enter(buffer));
 		if (i >= buffsize)
 		{
-			linebuffer = realloc(linebuffer, (buffsize + 2));
-			if (linebuffer == NULL)
+			buffer = realloc(buffer, (buffsize + 2));
+			if (buffer == NULL)
 			{
-				free(linebuffer);
+				free(buffer);
 				return (NULL);
 			}
 		}
 	}
-	linebuffer[i] = '\0';
-	buff = space(linebuffer);
-	free(linebuffer);
-	hashtag_handler(buff);
-	return (buff);
+	buffer[i] = '\0';
+	buf = space(buffer);
+	free(buffer);
+	hashtag_handler(buf);
+	return (buf);
 }
 
 /**
- * csenter - newline characterr is handled
- * @string: handling of string input
- * Return: string to be empty
+ * enter - Handles newline character input
+ * @string: String to be handled
+ * Return: Empty string
  */
-char *csenter(char *string)
+char *enter(char *string)
 {
 	free(string);
 	return ("\0");
 }
 
 /**
- * csspace - changes input stringg and preceed whitespacecs removal
- * @str: user input modifications
- * Return: modified strings from user.
+ * space - Modifies the input string to remove preceeding whitespaces
+ * @str: Input to be modifies
+ * Return: Returns the modified string
  */
-char *csspace(char *str)
+char *space(char *str)
 {
 	int i, j = 0;
-	char *buf;
+	char *buff;
 
-	buf = malloc(sizeof(char) * (_strlen(str) + 1));
-	if (buf == NULL)
+	buff = malloc(sizeof(char) * (_strlen(str) + 1));
+	if (buff == NULL)
 	{
-		free(buf);
+		free(buff);
 		return (NULL);
 	}
 	for (i = 0; str[i] == ' '; i++)
 		;
 	for (; str[i + 1] != '\0'; i++)
 	{
-		buf[j] = str[i];
+		buff[j] = str[i];
 		j++;
 	}
-	buf[j] = '\0';
-	if (buf[0] == '\0' || buf[0] == '#')
+	buff[j] = '\0';
+	if (buff[0] == '\0' || buff[0] == '#')
 	{
-		free(buf);
+		free(buff);
 		return ("\0");
 	}
-	return (buf);
+	return (buff);
 }
 
 /**
- * cs_htag - eeverything after '#' is removed.
- * @buf: inputs linebuffer
- * Return: nothiing.
+ * hashtag_handler - function that removes everything after '#'
+ * @buff: input buffer
+ * Return: nothing
  */
-void cs_htag(char *buf)
+void hashtag_handler(char *buff)
 {
 	int i;
 
-	for (i = 0; buf[i] != '\0'; i++)
+	for (i = 0; buff[i] != '\0'; i++)
 	{
-		if (buf[i] == '#' && buf[i - 1] == ' ' && buf[i + 1] == ' ')
+		if (buff[i] == '#' && buff[i - 1] == ' ' && buff[i + 1] == ' ')
 		{
-			buf[i] = '\0';
+			buff[i] = '\0';
 		}
 	}
 }
-
