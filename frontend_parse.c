@@ -1,29 +1,46 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * check_builtin - Checks if parsed command in built-in
- * @cmd: Parsed command to be check
- * Return: 0 Succes -1 Fail
+ * frontend_parse - checks for parse commands.
+ * @cmdd: commandd to be checked.
+ * Return: 0,Success; -1 if fails.
  */
-int check_builtin(char **cmd)
+int frontend_parse(char **cmdd)
 {
-	builtin fun[] = {
-		{"cd", NULL},
-		{"help", NULL},
+	frontend fun[] = {
+		{"cdd", NULL},
+		{"cs", NULL},
 		{"echo", NULL},
-		{"env", NULL},
-		{"history", NULL},
+		{"envi", NULL},
+		{"rec", NULL},
 		{NULL, NULL}
 	};
 	int i = 0;
 
-	if (*cmd == NULL)
+	if (*cmdd == NULL)
 	{
 		return (-1);
 	}
 	while ((fun + i)->command)
 	{
-		if (_strcmp(cmd[0], (fun + i)->command) == 0)
+		if (_cmpcsstr(cmdd[0], (fun + i)->command) == 0)
 			return (0);
 		i++;
 	}
@@ -31,28 +48,28 @@ int check_builtin(char **cmd)
 }
 
 /**
- * handle_builtin - Handles predefined built in commands
- * @cmd: Array of parsed command strings
- * @st: Status of last execution
- * Return: -1 Failure 0 Success
+ * cs_frontend - holds predefined buil-ins user commands.
+ * @cmdd: arr of pasrsee commands.
+ * @st: stringg of arr.
+ * Return: 0 on success and -1 if fails.
  */
-int handle_builtin(char **cmd, int st)
+int cs_frontend(char **cmdd, int st)
 {
-	builtin built_in[] = {
-		{"cd", change_dir},
-		{"env", dis_env},
-		{"help", display_help},
-		{"echo", echo_bul},
-		{"history", history_dis},
+	cs cs_frontend[] = {
+		{"cdd", cs_dirr},
+		{"envi", cs_prompt},
+		{"cs", cs_prompt},
+		{"echo", cs_foo},
+		{"rec", rec_cs},
 		{NULL, NULL}
 	};
 	int i = 0;
 
-	while ((built_in + i)->command)
+	while ((cs_frontend + i)->command)
 	{
-		if (_strcmp(cmd[0], (built_in + i)->command) == 0)
+		if (_cmpcsstr(cmdd[0], (cs_frontend + i)->command) == 0)
 		{
-			return ((built_in + i)->function(cmd, st));
+			return ((cs_frontend + i)->function(cmdd, st));
 		}
 		i++;
 	}
@@ -60,45 +77,45 @@ int handle_builtin(char **cmd, int st)
 }
 
 /**
- * exit_bul - Exit Status for built-in commands
- * @cmd: Array of parsed command strings
- * @input: Input recieved from user (to be freed)
- * @argv: Arguments before program starts(argv[0] == Shell Program Name)
- * @c: Shell execution count
- * @stat: Exit status
+ * exitt_blt - exitt state for blt-in commands.
+ * @cmdd: Arra of pasrse commands.
+ * @input: free user's inputs.
+ * @argv: Argsstarting programm || chrissamshell)
+ * @c: count chrisamshell executes
+ * @stat: Exitt state.
  */
-void exit_bul(char **cmd, char *input, char **argv, int c, int stat)
+void exitt_blt(char **cmdd, char *input, char **argv, int c, int stat)
 {
 	int status, i = 0;
 
-	if (cmd[1] == NULL)
+	if (cmdd[1] == NULL)
 	{
 		free(input);
-		free(cmd);
+		free(cmdd);
 		exit(stat);
 	}
-	while (cmd[1][i])
+	while (cmdd[1][i])
 	{
-		if (_isalpha(cmd[1][i++]) != 0)
+		if (_csalph(cmdd[1][i++]) != 0)
 		{
-			_prerror(argv, c, cmd);
+			_prerror(argv, c, cmdd);
 			free(input);
-			free(cmd);
+			free(cmdd);
 			exit(2);
 		}
 		else
 		{
-			status = _atoi(cmd[1]);
+			status = _acs(cmdd[1]);
 			if (status == 2)
 			{
-				_prerror(argv, c, cmd);
+				_prerror(argv, c, cmdd);
 				free(input);
-				free(cmd);
-				exit(status);
+				free(cmdd);
+				exit(state);
 			}
 			free(input);
-			free(cmd);
-			exit(status);
+			free(cmdd);
+			exit(state);
 
 		}
 	}
