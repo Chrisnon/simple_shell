@@ -18,56 +18,56 @@
  **********************************************************/
 
 /**
- * _cpycsstr - copyy stringg.
- * @destt: destinatiion.
- * @src: source from user's inputs.
- * Return: destinatiion.
+ * _strcpy - function that copies a string
+ * @dest: destination
+ * @src: source
+ * Return: destination
  */
-char *_cpycsstr(char *destt, char *src)
+char *_strcpy(char *dest, char *src)
 {
 	int i = 0;
 
 	while (src[i])
 	{
-		destt[i] = src[i];
+		dest[i] = src[i];
 		i++;
 	}
-	destt[i] = '\0';
-	return (destt);
+	dest[i] = '\0';
+	return (dest);
 }
 
 /**
- * _catcsstr - concatennates tow(2) stringss.
- * @destt: firrst stringg.
- * @src: secondd stringg.
- * Return: firrst stringg+secondd stringg
+ * _strcat - function that concatenates two strings
+ * @dest: first string
+ * @src: second string
+ * Return: first string + second string
  */
-char *_catcsstr(char *destt, char *src)
+char *_strcat(char *dest, char *src)
 {
-	char *s = destt;
+	char *s = dest;
 
-	while (*destt != '\0')
+	while (*dest != '\0')
 	{
-		destt++;
+		dest++;
 	}
 
 	while (*src != '\0')
 	{
-		*destt = *src;
-		destt++;
+		*dest = *src;
+		dest++;
 		src++;
 	}
-	*destt = '\0';
+	*dest = '\0';
 	return (s);
 }
 
 /**
- * _chrcsstr - locate characterr stringg.
- * @s: stringg search
- * @c: characterr loccated.
- * Return: pointer to characterr
+ * _strchr - function that locates character in a string
+ * @s: string to be searched
+ * @c: character to be located
+ * Return: pointer to character
  */
-char *_chrcsstr(char *s, char c)
+char *_strchr(char *s, char c)
 {
 	do {
 		if (*s == c)
@@ -79,13 +79,13 @@ char *_chrcsstr(char *s, char c)
 }
 
 /**
- * _cmpcsstrn - compare two92) characters of stringg.
- * @s1: firrst stringg.
- * @s2: secondd stringg.
- * @n: compared characterrs.
- * Return: 1 for unmatched string; otherrwise 0.
+ * _strncmp - function that compares n amount of characters of two strings
+ * @s1: first string
+ * @s2: second string
+ * @n: amount of characters to compare
+ * Return: 1 if the strings don't match otherwise 0
  */
-int _cmpcsstrn(const char *s1, const char *s2, size_t n)
+int _strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t i;
 
@@ -103,11 +103,11 @@ int _cmpcsstrn(const char *s1, const char *s2, size_t n)
 }
 
 /**
- * _dupcsstr - a tring dupplication.
- * @str: stringg.
- * Return: string duplicate; or fail if NULL.
+ * _strdup - duplicate a string
+ * @str: string
+ * Return: duplicated string or Null if failed
  */
-char *_dupcsstr(char *str)
+char *_strdup(char *str)
 {
 	size_t len, i;
 	char *str2;
@@ -124,4 +124,3 @@ char *_dupcsstr(char *str)
 	}
 	return (str2);
 }
-
