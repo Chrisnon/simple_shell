@@ -97,7 +97,7 @@ int numcount(char *line);
 int searchpath(char *p, char **tokens);
 int findonpath(char **tokens);
 void executepath(char *p, char **tokens);
-int _printf(const char *format, ...);
+int _csshell(const char *format, ...);
 int chkfmt(va_list *args, const char *format, int i);
 int prchr(va_list *args);
 int prstr(va_list *args);
