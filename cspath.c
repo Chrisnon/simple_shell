@@ -17,8 +17,7 @@
  *
  **********************************************************/
 
-
-**
+/**
  * path_cmd -  Search In $PATH for executable command
  * @cmd: Parsed input
  * Return: 0 on success or  1 on failure  0
