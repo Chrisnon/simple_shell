@@ -62,7 +62,7 @@ void cs_alias(void)
 }
 
 /**
- * cs_cdd - Shows info for commandd 'cd'
+ * cs_cdd - Shows info for commandd 'cdd'
  */
 void cs_cdd(void)
 {
@@ -82,7 +82,7 @@ void cs_cdd(void)
 }
 
 /**
- * cs_exitt - Shows info for ChrisSamShell commnadd 'exit'
+ * cs_exitt - Shows info for ChrisSamShell commnadd 'exitt'
  */
 void cs_exitt(void)
 {
@@ -98,16 +98,16 @@ void cs_exitt(void)
 }
 
 /**
- * help_help - Displays information on the shell by builtin command 'help'
+ * cs_cs - shows info for ChrisSamShell command 'cs'
  */
-void help_help(void)
+void cs_cs(void)
 {
-	char *msg = "help: help\n\tSee all possible Shellby builtin commands.\n";
+	char *msg = "cs: cs\n\tConfirms all ChrisSamShell commandss.\n";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "\n      help [BUILTIN NAME]\n\tSee specific information on each ";
+	msg = "\n      cs [BUILTIN NAMEE]\n\tConfirm each specific info ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "builtin command.\n";
+	msg = "builtin commandd.\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
