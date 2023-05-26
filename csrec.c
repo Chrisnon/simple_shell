@@ -18,13 +18,13 @@
  **********************************************************/
 
 /**
- * csrec - writes characters withh user's inputs
- * @input: user's character inputs.
- * Return: 0, on success; -1 on fail.
+ * history - write file with user inputs
+ * @input: user input
+ * Return: 0 on success -1 if failed
  */
-int csrec(char *input)
+int history(char *input)
 {
-	char *filename = ".chrissam_shell_rec";
+	char *filename = ".simple_shell_history";
 	ssize_t fd, w;
 	int len = 0;
 
@@ -43,4 +43,3 @@ int csrec(char *input)
 	}
 	return (1);
 }
-
