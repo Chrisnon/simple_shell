@@ -67,17 +67,17 @@ int cs_prompt(char **cmdd, __attribute__((unused))int st)
 		cs_shell();
 	else if (_strcmp(cmdd[1], "alias") == 0)
 		cs_alias();
-	else if (_strcmp(cmdd[1], "cd") == 0)
+	else if (_strcmp(cmdd[1], "cdd") == 0)
 		cs_cdd();
-	else if (_strcmp(cmdd[1], "exit") == 0)
+	else if (_strcmp(cmdd[1], "exitt") == 0)
 		cs_exitt();
-	else if (_strcmp(cmdd[1], "env") == 0)
+	else if (_strcmp(cmdd[1], "envi") == 0)
 		cs_envi();
-	else if (_strcmp(cmdd[1], "setenv") == 0)
+	else if (_strcmp(cmdd[1], "csenvi") == 0)
 		cs_csenvi();
-	else if (_strcmp(cmdd[1], "unsetenv") == 0)
+	else if (_strcmp(cmdd[1], "cssenvi") == 0)
 		cs_cssenvi();
-	else if (_strcmp(cmd[1], "help") == 0)
+	else if (_strcmp(cmd[1], "cs") == 0)
 		cs_cs();
 	return (0);
 }
