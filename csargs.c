@@ -18,12 +18,12 @@
  **********************************************************/
 
 /**
- * cs_reads - user input args commands are read
- * @reads: contains user's input commands
- * @argv: passes args
- * Return: 0; or -1 is returned.
+ * read_file - Reads commands from the argument File
+ * @file: File containing commands
+ * @argv: Arguments passed
+ * Return: -1 or 0
  */
-void cs_reads(char *file, char **argv)
+void read_file(char *file, char **argv)
 {
 	FILE *fp;
 	char *line = NULL;
@@ -39,7 +39,7 @@ void cs_reads(char *file, char **argv)
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		count++;
-		cs_treats(line, count, fp, argv);
+		treat_file(line, count, fp, argv);
 	}
 	if (line)
 		free(line);
@@ -48,20 +48,20 @@ void cs_reads(char *file, char **argv)
 }
 
 /**
- * cs_treats - handles front-end input commands being executed.
- * @reads: csfrom user inputs.
- * @count: counts errors.
- * @fp: Filee descriiptor.
- * @argv: args from the command lines.
+ * treat_file - Parse commands and handle their execution
+ * @line: Line from file
+ * @count: Error counter
+ * @fp: File descriptor
+ * @argv: Command line arguments
  */
-void cs_treats(char *line, int count, FILE *fp, char **argv)
+void treat_file(char *line, int count, FILE *fp, char **argv)
 {
 	char **cmd;
 	int stat = 0;
 
 	cmd = parse_cmd(line);
 	if (_strncmp(cmd[0], "exit", 4) == 0)
-		cs_exitt(cmd, line, fp);
+		exit_bul_for_file(cmd, line, fp);
 	else if (check_builtin(cmd) == 0)
 	{
 		stat = handle_builtin(cmd, stat);
@@ -75,12 +75,12 @@ void cs_treats(char *line, int count, FILE *fp, char **argv)
 }
 
 /**
- * cs-exitt - user input status exited
- * @line: command from user
- * @cmd: frontend input executed
- * @fd: Fille Descriiptor.
+ * exit_bul_for_file - Exit status handler for file input
+ * @line: Line from a file
+ * @cmd: Parsed command
+ * @fd: File Descriptor
  */
-void cs_exitt(char **cmd, char *line, FILE *fd)
+void exit_bul_for_file(char **cmd, char *line, FILE *fd)
 {
 	int status;
 	int i = 0;
@@ -103,4 +103,3 @@ void cs_exitt(char **cmd, char *line, FILE *fd)
 	fclose(fd);
 	exit(status);
 }
-
