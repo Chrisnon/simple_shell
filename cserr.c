@@ -1,63 +1,80 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * print_error - Displays error message
- * @input: Input recieved from user
- * @counter: Count of shell loop
- * @argv: Arguments before program starts(argv[0] == Shell Program Name)
+ * cs_err - shows message abt error.
+ * @input: recieves user's input commands.
+ * @counter: chrissamshell counts.
+ * @argv: args of program beinning || chrissamshell)
  */
 
-void print_error(char *input, int counter, char **argv)
+void cs_err(char *input, int counter, char **argv)
 {
-	char *er;
+	char *err;
 
 	PRINT(argv[0]);
 	PRINT(": ");
 	er = _itoa(counter);
-	PRINT(er);
-	free(er);
+	PRINT(err);
+	free(err);
 	PRINT(": ");
 	PRINT(input);
 	PRINT(": not found\n");
 }
 
 /**
- *  _prerror - Prints custom Error
- * @argv: Arguments before program starts(argv[0] == Shell Program Name)
- * @c: Error Count
- * @cmd: Array of parsed command strings
+ *  _cserr - customized error prints.
+ * @argv: args of program beinning || chrissamshell)
+ * @c: counts err
+ * @cmdd: frontend of array od strings commands.
  */
 
-void _prerror(char **argv, int c, char **cmd)
+void _cserr(char **argv, int c, char **cmdd)
 {
-	char *er = _itoa(c);
+	char *err = _itoa(c);
 
 	PRINT(argv[0]);
 	PRINT(": ");
-	PRINT(er);
+	PRINT(err);
 	PRINT(": ");
-	PRINT(cmd[0]);
-	PRINT(": Illegal number: ");
-	PRINT(cmd[1]);
+	PRINT(cmdd[0]);
+	PRINT(": Unallowed number: ");
+	PRINT(cmdd[1]);
 	PRINT("\n");
-	free(er);
+	free(err);
 }
 
 /**
- * error_file - Prints custom Error
- * @argv: Arguments before program starts(argv[0] == Shell Program Name)
- * @c: Error Count
+ * err_cs - customized errors prints
+ * @argv: args of program beinning || chrissamshell)
+ * @c: counts err
  */
-void error_file(char **argv, int c)
+void err_cs(char **argv, int c)
 {
-	char *er = _itoa(c);
+	char *err = _itoa(c);
 
 	PRINT(argv[0]);
 	PRINT(": ");
-	PRINT(er);
-	PRINT(": Can't open ");
+	PRINT(err);
+	PRINT(": unable to open ");
 	PRINT(argv[1]);
 	PRINT("\n");
-	free(er);
+	free(err);
 }
 
