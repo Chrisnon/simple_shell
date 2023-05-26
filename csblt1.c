@@ -1,82 +1,99 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * help_all - Displays all possible builtin shellby commands
+ * cs_shell - Shows all ChrisSamShell coomand lines.
  */
-void help_all(void)
+void cs_shell(void)
 {
-	char *msg = "Shellby\nThese shell commands are defined internally.\n";
+	char *msg = "ChrisSamShell\nCS shell commands defines internally.\n";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "Type 'help' to see this list.\nType 'help name' to find ";
+	msg = "Type 'cs' to see list.\nType 'cs namee' to show ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "out more about the function 'name'.\n\n  alias   \t";
+	msg = "outt extra functions 'namee'.\n\n  alias   \t";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "alias [NAME[='VALUE'] ...]\n  cd    \tcd   ";
+	msg = "alias [NAMEE[='VALUE'] ...]\n  cd    \tcd   ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "[DIRECTORY]\n  exit    \texit [STATUS]\n  env     \tenv";
+	msg = "[DIRECTORY]\n  exitt    \texitt [STATUS]\n  env     \tenv";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "\n  setenv  \tsetenv [VARIABLE] [VALUE]\n  unsetenv\t";
+	msg = "\n  setenv  \tsetenv [VARIABLE] [VALUEE]\n  unsetenv\t";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "unsetenv [VARIABLE]\n";
+	msg = "unsetenv [VARIABLEE]\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
- * help_alias - Displays information on the shell by builtin command 'alias'
+ * cs_alias - Shows ChrisSamShell command 'alias'
  */
-void help_alias(void)
+void cs_alias(void)
 {
-	char *msg = "alias: alias [NAME[='VALUE'] ...]\n\tHandles aliases.\n";
+	char *msg = "alias: alias [NAMEE[='VALUEE'] ...]\n\Give aliases.\n";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "\n\talias: Prints a list of all aliases, one per line, in ";
+	msg = "\n\talias: Give out all aliases, each per linee, in ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "the format NAME='VALUE'.\n\talias name [name2 ...]:prints";
+	msg = "the formatt NAMEE='VALUEE'.\n\talias namee [namee2 ...]:gives";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = " the aliases name, name2, etc. one per line, in the ";
+	msg = " the aliases namee, namee2, etcc. each per linee, in thee ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "form NAME='VALUE'.\n\talias NAME='VALUE' [...]: Defines";
+	msg = "formm NAMEE='VALUEE'.\n\talias NAMEE='VALUEE' [...]: defined";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = " an alias for each NAME whose VALUE is given. If NAME ";
+	msg = " an alias for each NAMEE with given VALUEE. If NAMEE ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "is already an alias, replace its value with VALUE.\n";
+	msg = "is an alias alreadyy, replace its valuee with VALUEE.\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
- * help_cd - Displays information on the shell by builtin command 'cd'
+ * cs_cdd - Shows info for commandd 'cd'
  */
-void help_cd(void)
+void cs_cdd(void)
 {
-	char *msg = "cd: cd [DIRECTORY]\n\tChanges the current directory of the";
+	char *msg = "cdd: cdd [DIR]\n\tModifies curr. dir. of the";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = " process to DIRECTORY.\n\n\tIf no argument is given, the ";
+	msg = " process to DIR.\n\n\tIf no arg is givenn, the ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "command is interpreted as cd $HOME. If the argument '-' is";
+	msg = "commands is shown as cd $HOME. If the arg '-' is";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = " given, the command is interpreted as cd $OLDPWD.\n\n";
+	msg = " given, the commandd is shown as cd $OLDPWD.\n\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "\tThe environment variables PWD and OLDPWD are updated ";
+	msg = "\tThe environ variables PWD and OLDPWD  updated ";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "after a change of directory.\n";
+	msg = "after  change of dir.\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
- * help_exit - Displays information on the shell by builtin command 'exit'
+ * cs_exitt - Shows info for ChrisSamShell commnadd 'exit'
  */
-void help_exit(void)
+void cs_exitt(void)
 {
-	char *msg = "exit: exit [STATUS]\n\tExits the shell.\n\n\tThe ";
+	char *msg = "exitt: exitt [STATUS]\n\tExitts ChrisSamShell.\n\n\tThe ";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "STATUS argument is the integer used to exit the shell.";
+	msg = "STATUS arg is the integer utilized to exitt ChrisSamShell.";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = " If no argument is given, the command is interpreted as";
+	msg = " If arg given, command shown as";
 	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = " exit 0.\n";
+	msg = " exitt 0.\n";
 	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
