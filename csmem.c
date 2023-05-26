@@ -18,24 +18,24 @@
  **********************************************************/
 
 /**
- * _csrealloc -  using malloc to reallocated mem blokcss.
- *@ptr: pointerr
- *@oldd_cssize: prev pointerr size.
- *@neww_cssize: current pointerr size.
- *Return: Pointerr to re-allocated mem.
+ * _realloc -  reallocates a memory block using malloc and free
+ *@ptr: pointer
+ *@old_size: previous Size Of The Pointer
+ *@new_size: new size of the pointer
+ *Return: Pointer to reallocated memory
  */
-void *_csrealloc(void *ptr, unsigned int oldd_cssize, unsigned int neww_cssize)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void *result;
 
-	if (neww_cssize == oldd_cssize)
+	if (new_size == old_size)
 		return (ptr);
-	if (neww_cssize == 0 && ptr)
+	if (new_size == 0 && ptr)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	result = malloc(neww_cssize);
+	result = malloc(new_size);
 	if (result == NULL)
 	{
 		free(result);
@@ -43,57 +43,57 @@ void *_csrealloc(void *ptr, unsigned int oldd_cssize, unsigned int neww_cssize)
 	}
 	if (ptr == NULL)
 	{
-		fill_an_array(result, '\0', neww_cssize);
+		fill_an_array(result, '\0', new_size);
 		free(ptr);
 	}
 	else
 	{
-		_memcpy(result, ptr, oldd_cssize);
+		_memcpy(result, ptr, old_size);
 		free(ptr);
 	}
 	return (result);
 }
 
 /**
- * permit_cs - allocatedd mem release
- * @cmdd: pointerss array
- * @line: pointerr character
+ * free_all - free memory allocated
+ * @cmd: array pointer
+ * @line: char pointer
  * Return: Void
  */
-void permit_cs(char **cmdd, char *line)
+void free_all(char **cmd, char *line)
 {
-	free(cmdd);
+	free(cmd);
 	free(line);
-	cmdd = NULL;
+	cmd = NULL;
 	line = NULL;
 }
 
 /**
- * _cpycsmem - bytes of mem copied from src dest.
- *@destt: pointerr of destinatiion.
- *@src: pointerr of sourcee
+ * _memcpy - copy bytes of memory from source to destination
+ *@dest: destination pointer
+ *@src: source pointer
  *@n: size to be copied
- *Return: destination's pointerr
+ *Return: pointer to destination
  */
-char *_cpycsmem(char *destt, char *src, unsigned int n)
+char *_memcpy(char *dest, char *src, unsigned int n)
 {
 	unsigned int i;
 
 	for (i = 0; i < n; i++)
 	{
-		destt[i] = src[i];
+		dest[i] = src[i];
 	}
-	return (destt);
+	return (dest);
 }
 
 /**
- * cs_array_fill - constantt byte to occupy.
- *@a: void pointerr
+ * fill_an_array - fill an array by constant byte
+ *@a: void pointer
  *@el: int
- *@len: lengtth forr int
- *Return: void pointerr
+ *@len: length for int
+ *Return: void pointer
  */
-void *cs_array_fill(void *a, int el, unsigned int len)
+void *fill_an_array(void *a, int el, unsigned int len)
 {
 	char *p = a;
 	unsigned int i = 0;
@@ -108,9 +108,9 @@ void *cs_array_fill(void *a, int el, unsigned int len)
 }
 
 /**
- * _cscalloc - malloc allocatess mem for arrayy.
- *@size: sizee
- *Return: void pointerr
+ * _calloc - allocates memory for an array using malloc
+ *@size: size
+ *Return: void pointer
  */
 void *_calloc(unsigned int size)
 {
@@ -128,4 +128,3 @@ void *_calloc(unsigned int size)
 	}
 	return (a);
 }
-
