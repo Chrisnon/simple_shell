@@ -18,7 +18,7 @@
  **********************************************************/
 
 /**
- * csprompt - function that prints '$' to standard output
+ * cs_prompt1 - printss user input '$' to sdtout
  */
 void prompt(void)
 {
