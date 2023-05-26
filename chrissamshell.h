@@ -1,139 +1,162 @@
 #ifndef SIMPLE_SHELL_H_
 #define SIMPLE_SHELL_H_
 
-/***** MACROS *****/
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
+/*MACROS*/
+#define DELIMITER " \t\r\n\a"
 #define PRINT(c) (write(STDERR_FILENO, c, _strlen(c)))
 #define BUFSIZE 10240
-#define DELIMITER " \t\r\n\a"
 
-/*** STANDARD LIBRARIES ***/
-#include <stdio.h>
+
+/*Standardized Libs*/
 #include <unistd.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <string.h>
-#include <sys/wait.h>
-#include <stdlib.h>
+#include <stdio.h>
 #include <signal.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <errno.h>
+#include <sys/wait.h>
+#include <stdarg.h>
+#include <dirent.h>
 #include <linux/limits.h>
+#include <errno.h>
 
-/******** STRING HANDLER FUNCTIONS **********/
 
-char *_strncpy(char *dest, char *src, int n);
-int _strlen(char *s);
-int _putchar(char c);
-int _atoi(char *s);
-void _puts(char *str);
-int _strcmp(char *s1, char *s2);
-int _isalpha(int c);
-void array_rev(char *arr, int len);
-int intlen(int num);
-char *_itoa(unsigned int n);
-char *_strcat(char *dest, char *src);
-char *_strcpy(char *dest, char *src);
-char *_strchr(char *s, char c);
-int _strncmp(const char *s1, const char *s2, size_t n);
-char *_strdup(char *str);
-
-/*********** MEMORY HANDLERS ***********/
-
-void free_env(char **env);
+/*CS Mems*/
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void *fill_an_array(void *a, int el, unsigned int len);
+void free_env(char **env);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_calloc(unsigned int size);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void free_all(char **input, char *line);
 
-/****** MISCELLANEOUS AND INPUT FUNCTIONS *******/
+/*Inputt Functions and Misc for ChrisSamShell*/
 
 char *_getline();
+char **separator(char *input);
 char *space(char *str);
-char *enter(char *string);
-void hashtag_handler(char *buff);
 void prompt(void);
 unsigned int check_delim(char c, const char *str);
 char *_strtok(char *str, const char *delim);
+char *enter(char *string);
+void hashtag_handler(char *buff);
 int history(char *input);
-char **separator(char *input);
 
-/****** FILE ARGUMENT HANDLER FUNCTIONS ******/
+
+/*Environ Handlings for ChrisSamShell*/
+
+extern char **environ;
+void free_env(char **env);
+void create_envi(char **envi);
+
+/*Handlings for ChrisSamShell Strinngs*/
+int _strncmp(const char *s1, const char *s2, size_t n);
+char *_strncpy(char *dest, char *src, int n);
+char *_strcat(char *dest, char *src);
+int _putchar(char c);
+int _atoi(char *s);
+char *_strdup(char *str);
+void _puts(char *str);
+int _strcmp(char *s1, char *s2);
+int intlen(int num);
+int _strlen(char *s);
+char *_itoa(unsigned int n);
+char *_strcpy(char *dest, char *src);
+void array_rev(char *arr, int len);
+char *_strchr(char *s, char c);
+int _isalpha(int c);
+
+/*ChrisSamShell Files Args Functionns*/
 
 void read_file(char *file, char **argv);
-void treat_file(char *line, int count, FILE *fp, char **argv);
 void exit_bul_for_file(char **cmd, char *line, FILE *fd);
+void treat_file(char *line, int count, FILE *fp, char **argv);
 
-/****** PARSED ARGUMENT HANDLER FUNCTIONS *****/
+/*ChrisSamShell Args for Backend or Executee*/
 
 char **parse_cmd(char *input);
-int handle_builtin(char **cmd, int er);
 int check_cmd(char **cmd, char *input, int c, char **argv);
+int handle_builtin(char **cmd, int er);
 void signal_to_handle(int sig);
 
-/******* ERROR HANDLERS ******/
+
+/*CSPrint Functionns*/
+
+void print_number_int(int n);
+void print_number(unsigned int n);
+int print_echo(char **cmd);
+
+/*Err Handlings for ChrisSamShell*/
 
 void print_error(char *input, int counter, char **argv);
 void _prerror(char **argv, int c, char **cmd);
 void error_file(char **argv, int c);
 
-/****** ENVIRONMENT HANDLERS ******/
+/*Struct Builtin Commandss*/
 
-extern char **environ;
-void create_envi(char **envi);
-void free_env(char **env);
+/**
+ * struct _cst - contain builtin commandss
+ * functionns implements resectvely
+ * @command: - builtin
+ * @function: - customized pointer to
+ * similar functions of builtin commandss.
+ */
+typedef struct _cst
+{
+	char *command;
+	int (*function)(char **line, int st);
+} cst;
 
-/****** PRINTING FUNCTIONS *****/
+/*CSPath*/
 
-void print_number(unsigned int n);
-void print_number_int(int n);
-int print_echo(char **cmd);
-
-/******* PATH FINDER *******/
-
-int path_cmd(char **cmd);
 char *build(char *token, char *value);
+int path_cmd(char **cmd);
 char *_getenv(char *name);
 
-/******* HELP HANDLERS *******/
+/*CSHelpers*/
 
 void help_env(void);
-void help_setenv(void);
-void help_unsetenv(void);
 void help_history(void);
-void help_all(void);
 void help_alias(void);
 void help_cd(void);
 void help_exit(void);
+void help_unsetenv(void);
+void help_all(void);
 void help_help(void);
 int display_help(char **cmd, __attribute__((unused))int st);
+void help_setenv(void);
 
-/****** BUILTIN COMMAND HANDLERS AND EXECUTE ******/
+/*Backend or Execute commands for builtin*/
 
-int check_builtin(char **cmd);
 int handle_builtin(char **cmd, int st);
-void exit_bul(char **cmd, char *input, char **argv, int c, int stat);
+int check_builtin(char **cmd);
 int change_dir(char **cmd, __attribute__((unused))int st);
 int dis_env(__attribute__((unused)) char **cmd,
 	    __attribute__((unused)) int st);
+void exit_bul(char **cmd, char *input, char **argv, int c, int stat);
 int echo_bul(char **cmd, int st);
 int history_dis(__attribute__((unused))char **c,
 		__attribute__((unused)) int st);
 
-/****** BUILT-IN COMMANDS STRUCT *****/
 
-/**
- * struct _builtin - Defines a struct that conatins built-in commands
- * with their respective implementation functions
- * @command: - Built-in command
- * @function: - Pointer to custom functions that have
- * similar functionalities as the built-in commands
- */
-typedef struct _builtin
-{
-	char *command;
-	int (*function)(char **line, int st);
-} builtin;
 
 #endif /*SIMPLE_SHELL_H_*/
 
