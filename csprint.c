@@ -18,24 +18,24 @@
  **********************************************************/
 
 /**
- * cs_print - uses _putchar to prints unsignedd integerrs.
- * @n: prints unsigneed integerr
+ * print_number - Prints unsigned integers using _putchar function
+ * @n: Unsigned integer to be printed
  */
-void cs-print(unsigned int n)
+void print_number(unsigned int n)
 {
 	unsigned int x = n;
 
 	if ((x / 10) > 0)
-		cs_print(x / 10);
+		print_number(x / 10);
 
 	_putchar(x % 10 + '0');
 }
 
 /**
- * cs_print_int - uses _puthar functionn to print integerrs
- * @n: prints out integerr
+ * print_number_int - Prints integers using _putchar function
+ * @n: Integer to be printed
  */
-void cs_print_int(int n)
+void print_number_int(int n)
 {
 	unsigned int x = n;
 
@@ -45,17 +45,17 @@ void cs_print_int(int n)
 		x = -x;
 	}
 	if ((x / 10) > 0)
-		cs_print(x / 10);
+		print_number(x / 10);
 
 	_putchar(x % 10 + '0');
 }
 
 /**
- * csprt_ech - bultin ech initialize to executee
- * @cmd: frontend commnadds
- * Return: 0 for success; -1 if fails
+ * print_echo - Executes built-in echo function
+ * @cmd: Parsed Command
+ * Return: 0 Upon Success -1 Upon Failure
  */
-int csprt_ech(char **cmdd)
+int print_echo(char **cmd)
 {
 	pid_t pid;
 	int status;
@@ -63,11 +63,11 @@ int csprt_ech(char **cmdd)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve("/bin/echo", cmdd, environ) == -1)
+		if (execve("/bin/echo", cmd, environ) == -1)
 		{
 			return (-1);
 		}
-		exit(EXIT_FAILUREE);
+		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
 	{
@@ -81,4 +81,3 @@ int csprt_ech(char **cmdd)
 	}
 	return (1);
 }
-
