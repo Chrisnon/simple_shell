@@ -18,70 +18,70 @@
  **********************************************************/
 
 
-/**
- * csfind_cmdd -  execute comand in path.
- * @cmd: user inputt
- * Return: success on 0 or  1 on fail
+**
+ * path_cmd -  Search In $PATH for executable command
+ * @cmd: Parsed input
+ * Return: 0 on success or  1 on failure  0
  */
-int csfind_cmdd(char **cmdd)
+int path_cmd(char **cmd)
 {
-	char *csfind, *value, *cmdd_csfind;
+	char *path, *value, *cmd_path;
 	struct stat buf;
 
-	csfind = _getenv("PATH");
-	value = _strtok(csfind, ":");
+	path = _getenv("PATH");
+	value = _strtok(path, ":");
 	while (value != NULL)
 	{
-		cmdd_csfind = build(*cmdd, value);
-		if (stat(cmdd_csfind, &buf) == 0)
+		cmd_path = build(*cmd, value);
+		if (stat(cmd_path, &buf) == 0)
 		{
-			*cmdd = _strdup(cmdd_csfind);
-			free(cmdd_csfind);
-			free(csfind);
+			*cmd = _strdup(cmd_path);
+			free(cmd_path);
+			free(path);
 			return (0);
 		}
-		free(cmdd_csfind);
+		free(cmd_path);
 		value = _strtok(NULL, ":");
 	}
-	free(csfind);
+	free(path);
 	free(value);
 	return (1);
 }
 
 /**
- * csblt - commands builds up
- * @token: commands are executible
- * @value: command in dirr.
- * Return: frontend of commandd path or failed on NULL.
+ * build - Build command
+ * @token: Executable command
+ * @value: Directory conatining Command
+ * Return: Parsed full path of command or NULL if failed
  */
-char *csblt(char *token, char *value)
+char *build(char *token, char *value)
 {
-	char *cmdd;
+	char *cmd;
 	size_t len;
 
 	len = _strlen(value) + _strlen(token) + 2;
 	cmd = malloc(sizeof(char) * len);
-	if (cmdd == NULL)
+	if (cmd == NULL)
 	{
-		free(cmdd);
+		free(cmd);
 		return (NULL);
 	}
 
-	memset(cmdd, 0, len);
+	memset(cmd, 0, len);
 
-	cmdd = _strcat(cmdd, value);
-	cmdd = _strcat(cmdd, "/");
-	cmdd = _strcat(cmdd, token);
+	cmd = _strcat(cmd, value);
+	cmd = _strcat(cmd, "/");
+	cmd = _strcat(cmd, token);
 
-	return (cmdd);
+	return (cmd);
 }
 
 /**
- * _obcsenvi - variablee value obtain by environ.
- * @name: namee of environ.
- * Return: environ variablee obtained or fails on NULL.
+ * _getenv - Gets the value of environment variable by name
+ * @name: Environment variable name
+ * Return: The value of the environment variable or NULL if failed
  */
-char *_obcsenvi(char *name)
+char *_getenv(char *name)
 {
 	size_t name_len, value_len;
 	char *value;
@@ -113,4 +113,3 @@ char *_obcsenvi(char *name)
 	}
 	return (NULL);
 }
-
