@@ -18,11 +18,11 @@
  **********************************************************/
 
 /**
- * cssep - disintegrate user's input characters;
- * @input: stringg characters from user's inputs
- * Return: user input strings as commandss. 
+ * separator - Separates command recieved from stdin by ;
+ * @input: String gathered from stdin
+ * Return: Parsed strings to be used as commands
  */
-char **cssep(char *input)
+char **separator(char *input)
 {
 	char **commands;
 	char *command;
@@ -50,4 +50,3 @@ char **cssep(char *input)
 
 	return (commands);
 }
-
