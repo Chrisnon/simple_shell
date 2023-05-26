@@ -65,7 +65,7 @@ int numcount(char *line);
 void _puts(char *str);
 char *_strcat(char *dest, char *src);
 int parse(char *line, int num_tokens, char *argv[], int failcount);
-int csexe(char *line, char **ar, char *nln, char **arry, char **argv, int flcnt);
+int cse(char *line, char **ar, char *nln, char **arry, char **argv, int flcnt);
 int _strncmp(char *s1, char *s2, int len);
 void changedir(char **ar);
 int checkbltin(char *line, char **ar, char *newline, char **array);
