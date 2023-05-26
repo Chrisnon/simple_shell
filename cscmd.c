@@ -1,11 +1,28 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * parse_cmd - Parses the command recieved from stdin
- * @input: String gathered from stdin
- * Return: Parsed strings to be used as arguments
+ * csprt_cmdd - recieves user input commands.
+ * @input: gather usr inputs stringss.
+ * Return: user input strings used as args.
  */
-char **parse_cmd(char *input)
+char **csprt_cmdd(char *input)
 {
 	char **arguments;
 	char *argument;
