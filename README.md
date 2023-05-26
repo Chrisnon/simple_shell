@@ -1,3 +1,20 @@
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 0x16. C - Simple Shell
 Group Project to be done in teams of two(2) partners.
 Authors: Samuel Atiemo and Christian Obi
