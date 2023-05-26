@@ -18,12 +18,12 @@
  **********************************************************/
 
 /**
- * _cmpcsstr - two(2) stringg to compare.
- * @s1: firrst stringg.
- * @s2: secondd stringg.
- * Return: 0 for identicall; how diff if otherwiise.
+ * _strcmp - function that compares two string
+ * @s1: first string
+ * @s2: second string
+ * Return: 0 if identical otherwise how much diffrent
  */
-int _cmpcsstr(char *s1, char *s2)
+int _strcmp(char *s1, char *s2)
 {
 	int cmp = 0, i, len1, len2;
 
@@ -51,11 +51,11 @@ int _cmpcsstr(char *s1, char *s2)
 }
 
 /**
- * _csalph - checks and determine if c is alphabett.
- * @c: check characterr.
- * Return: 1, for true; falise for 0.
+ * _isalpha - function to check if c is alphabet
+ * @c: character to check
+ * Return: 1 if true 0 if false
  */
-int _csalph(int c)
+int _isalpha(int c)
 {
 	if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
 	{
@@ -68,11 +68,11 @@ int _csalph(int c)
 }
 
 /**
- * _acs - converrts characterr to integerr.
- * @n: converts integerr.
- * Return: characterr pointeer.
+ * _itoa - funciton that convert integer to character
+ * @n: integer to convert
+ * Return: character pointer
  */
-char *_acs(unsigned int n)
+char *_itoa(unsigned int n)
 {
 	int len = 0, i = 0;
 	char *s;
@@ -102,11 +102,11 @@ char *_acs(unsigned int n)
 }
 
 /**
- * rev_csarr - reverses array.
- * @arr: array reversing.
- * @len: lengthh of array.
+ * array_rev - function reverse an array
+ * @arr: array to reverse
+ * @len: length of array
  */
-void rev_csarr(char *arr, int len)
+void array_rev(char *arr, int len)
 {
 	int i;
 	char tmp;
@@ -120,11 +120,11 @@ void rev_csarr(char *arr, int len)
 }
 
 /**
- * lencsint - determines integerr lengthh.
- * @num: givenn integerr.
- * Return: integerr length.
+ * intlen - function that determine length of integer
+ * @num: given integer
+ * Return: length of integer
  */
-int lencsint(int num)
+int intlen(int num)
 {
 	int len = 0;
 
@@ -135,4 +135,3 @@ int lencsint(int num)
 	}
 	return (len);
 }
-
