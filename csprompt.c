@@ -1,18 +1,35 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * _getline - read input from standard input by user
- * Return: the input on a buffer
+ * csget_line - user's input characters are read
+ * Return: input on linebuffer.
  */
-char *_getline()
+char *csget_line()
 {
 	int i, rd, buffsize = BUFSIZE;
-	char c = 0, *buffer, *buf;
+	char c = 0, *linebuffer, *buff;
 
-	buffer = malloc(buffsize);
-	if (buffer == NULL)
+	linebuffer = malloc(buffsize);
+	if (linebuffer == NULL)
 	{
-		free(buffer);
+		free(linebuffer);
 		return (NULL);
 	}
 	for (i = 0; c != EOF && c != '\n'; i++)
@@ -21,86 +38,86 @@ char *_getline()
 		rd = read(STDIN_FILENO, &c, 1);
 		if (rd == 0)
 		{
-			free(buffer);
-			exit(EXIT_SUCCESS);
+			free(linebuffer);
+			exit(EXIT_SUCCEESS);
 		}
-		buffer[i] = c;
-		if (buffer[0] == '\n')
-			return (enter(buffer));
+		linebuffer[i] = c;
+		if (linebuffer[0] == '\n')
+			return (enter(linebuffer));
 		if (i >= buffsize)
 		{
-			buffer = realloc(buffer, (buffsize + 2));
-			if (buffer == NULL)
+			linebuffer = realloc(linebuffer, (buffsize + 2));
+			if (linebuffer == NULL)
 			{
-				free(buffer);
+				free(linebuffer);
 				return (NULL);
 			}
 		}
 	}
-	buffer[i] = '\0';
-	buf = space(buffer);
-	free(buffer);
-	hashtag_handler(buf);
-	return (buf);
+	linebuffer[i] = '\0';
+	buff = space(linebuffer);
+	free(linebuffer);
+	hashtag_handler(buff);
+	return (buff);
 }
 
 /**
- * enter - Handles newline character input
- * @string: String to be handled
- * Return: Empty string
+ * csenter - newline characterr is handled
+ * @string: handling of string input
+ * Return: string to be empty
  */
-char *enter(char *string)
+char *csenter(char *string)
 {
 	free(string);
 	return ("\0");
 }
 
 /**
- * space - Modifies the input string to remove preceeding whitespaces
- * @str: Input to be modifies
- * Return: Returns the modified string
+ * csspace - changes input stringg and preceed whitespacecs removal
+ * @str: user input modifications
+ * Return: modified strings from user.
  */
-char *space(char *str)
+char *csspace(char *str)
 {
 	int i, j = 0;
-	char *buff;
+	char *buf;
 
-	buff = malloc(sizeof(char) * (_strlen(str) + 1));
-	if (buff == NULL)
+	buf = malloc(sizeof(char) * (_strlen(str) + 1));
+	if (buf == NULL)
 	{
-		free(buff);
+		free(buf);
 		return (NULL);
 	}
 	for (i = 0; str[i] == ' '; i++)
 		;
 	for (; str[i + 1] != '\0'; i++)
 	{
-		buff[j] = str[i];
+		buf[j] = str[i];
 		j++;
 	}
-	buff[j] = '\0';
-	if (buff[0] == '\0' || buff[0] == '#')
+	buf[j] = '\0';
+	if (buf[0] == '\0' || buf[0] == '#')
 	{
-		free(buff);
+		free(buf);
 		return ("\0");
 	}
-	return (buff);
+	return (buf);
 }
 
 /**
- * hashtag_handler - function that removes everything after '#'
- * @buff: input buffer
- * Return: nothing
+ * cs_htag - eeverything after '#' is removed.
+ * @buf: inputs linebuffer
+ * Return: nothiing.
  */
-void hashtag_handler(char *buff)
+void cs_htag(char *buf)
 {
 	int i;
 
-	for (i = 0; buff[i] != '\0'; i++)
+	for (i = 0; buf[i] != '\0'; i++)
 	{
-		if (buff[i] == '#' && buff[i - 1] == ' ' && buff[i + 1] == ' ')
+		if (buf[i] == '#' && buf[i - 1] == ' ' && buf[i + 1] == ' ')
 		{
-			buff[i] = '\0';
+			buf[i] = '\0';
 		}
 	}
 }
