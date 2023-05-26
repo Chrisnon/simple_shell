@@ -1,9 +1,26 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * _putchar - function that writes the character to stdout
- * @c: The character to print
- * Return: character to standard output
+ * _putchar -  writes character to stdout functionn
+ * @c: character to print.
+ * Return: character to stdout.
  */
 int _putchar(char c)
 {
@@ -11,11 +28,11 @@ int _putchar(char c)
 }
 
 /**
- * _puts - function that prints a string
- * @str: pointer to string
- * Return: void
+ * _cspts - prints user's inputs stringg.
+ * @str: pointerr to stringg.
+ * Return: void.
  */
-void _puts(char *str)
+void _cspts(char *str)
 {
 	int i;
 
@@ -27,35 +44,35 @@ void _puts(char *str)
 }
 
 /**
- * _strncpy - function that copies a string
- * @dest: destination string
- * @src: source string
- * @n: number of charaters to be copied
- * Return: copied strings
+ * _cpycsstrn - copy stringg.
+ * @destt: destinatiion stringg.
+ * @src: source striing
+ * @n: copied characterr numbers
+ * Return: stringg to copy.
  */
-char *_strncpy(char *dest, char *src, int n)
+char *_cpycsstrn(char *destt, char *src, int n)
 {
 	int i = 0;
 
 	while (i < n && *(src + i))
 	{
-		*(dest + i) = *(src + i);
+		*(destt + i) = *(src + i);
 		i++;
 	}
 	while (i < n)
 	{
-		*(dest + i) = '\0';
+		*(destt + i) = '\0';
 		i++;
 	}
-	return (dest);
+	return (destt);
 }
 
 /**
- * _strlen - function that counts the length of a string
- * @s: string input
- * Return: length of string
+ * _lencsstr - count stringg lengthh.
+ * @s: input stringg of user.
+ * Return: stringg lengthh.
  */
-int _strlen(char *s)
+int _lencsstr(char *s)
 {
 	int i;
 
@@ -67,11 +84,11 @@ int _strlen(char *s)
 }
 
 /**
- * _atoi - function to convert string to a integer
- * @s: string input
- * Return: converted integer
+ * _acs - conversion of stringg to integerr.
+ * @s: input stringg from user.
+ * Return: converrted integerr.
  */
-int _atoi(char *s)
+int _acs(char *s)
 {
 	int i = 0, j = 1, k;
 	unsigned int l = 0;
