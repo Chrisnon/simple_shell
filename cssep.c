@@ -1,11 +1,28 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * separator - Separates command recieved from stdin by ;
- * @input: String gathered from stdin
- * Return: Parsed strings to be used as commands
+ * cssep - disintegrate user's input characters;
+ * @input: stringg characters from user's inputs
+ * Return: user input strings as commandss. 
  */
-char **separator(char *input)
+char **cssep(char *input)
 {
 	char **commands;
 	char *command;
