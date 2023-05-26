@@ -1,12 +1,29 @@
 #include "chrissamshell.h"
 
+/*********************************************************
+ * Project: ALX Simple Shell
+ *
+ *
+ * Team/Group/Collaboration Project
+
+ *
+ *
+ * Date: 15/05/2023
+ *
+ *
+ * Authors:
+ *        1. Samuel Atiemo
+ *        2. Christian Obi
+ *
+ **********************************************************/
+
 /**
- * _strcmp - function that compares two string
- * @s1: first string
- * @s2: second string
- * Return: 0 if identical otherwise how much diffrent
+ * _cmpcsstr - two(2) stringg to compare.
+ * @s1: firrst stringg.
+ * @s2: secondd stringg.
+ * Return: 0 for identicall; how diff if otherwiise.
  */
-int _strcmp(char *s1, char *s2)
+int _cmpcsstr(char *s1, char *s2)
 {
 	int cmp = 0, i, len1, len2;
 
@@ -34,11 +51,11 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * _isalpha - function to check if c is alphabet
- * @c: character to check
- * Return: 1 if true 0 if false
+ * _csalph - checks and determine if c is alphabett.
+ * @c: check characterr.
+ * Return: 1, for true; falise for 0.
  */
-int _isalpha(int c)
+int _csalph(int c)
 {
 	if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
 	{
@@ -51,11 +68,11 @@ int _isalpha(int c)
 }
 
 /**
- * _itoa - funciton that convert integer to character
- * @n: integer to convert
- * Return: character pointer
+ * _acs - converrts characterr to integerr.
+ * @n: converts integerr.
+ * Return: characterr pointeer.
  */
-char *_itoa(unsigned int n)
+char *_acs(unsigned int n)
 {
 	int len = 0, i = 0;
 	char *s;
@@ -85,11 +102,11 @@ char *_itoa(unsigned int n)
 }
 
 /**
- * array_rev - function reverse an array
- * @arr: array to reverse
- * @len: length of array
+ * rev_csarr - reverses array.
+ * @arr: array reversing.
+ * @len: lengthh of array.
  */
-void array_rev(char *arr, int len)
+void rev_csarr(char *arr, int len)
 {
 	int i;
 	char tmp;
@@ -103,11 +120,11 @@ void array_rev(char *arr, int len)
 }
 
 /**
- * intlen - function that determine length of integer
- * @num: given integer
- * Return: length of integer
+ * lencsint - determines integerr lengthh.
+ * @num: givenn integerr.
+ * Return: integerr length.
  */
-int intlen(int num)
+int lencsint(int num)
 {
 	int len = 0;
 
