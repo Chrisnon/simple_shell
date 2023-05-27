@@ -48,6 +48,8 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 void *_calloc(unsigned int size);
 void free_all(char **input, char *line);
 
+void nomain(void);
+
 /*Inputt Functions and Misc for ChrisSamShell*/
 
 char *_getline();
