@@ -1,7 +1,4 @@
 #include "chrissamshell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#define MAX_LEN 100
 
 /**
  * nomain - Entering pt
