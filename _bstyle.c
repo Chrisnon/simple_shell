@@ -1,14 +1,14 @@
 #include "chrissamshell.h"
 
 /**
- * nomain - Entering pt
+ * main - Entering pt
  * Description: coding in betty style
  *
  * Return: Always 0; Success
  *
  */
 
-void nomain(void)
+int main(void)
 {
 /*Variables declaration */
 char *studentid;
@@ -34,6 +34,6 @@ printf("Hello! %s, How're you doing please?\n", studentid);
 /*Memory allocation freed for studentid */
 free(studentid);
 
-return;
+return (0);
 }
 
